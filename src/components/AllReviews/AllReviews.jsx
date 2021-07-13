@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getReviews } from '../../utils/api';
 import ControlAllReviews from './ControlAllReviews';
 import ShowAllReviews from './ShowAllReviews';
 
-const AllReviews = () => {
+const AllReviews = ({ comments }) => {
   const [reviews, setReviews] = useState([]);
+  const { category, sort_by, order, title, page, limit } = useParams();
 
   // query reviews
   useEffect(() => {
-    getReviews().then((reviewsFromApi) => {
-      setReviews(reviewsFromApi);
-    });
-  }, []);
+    getReviews(category, sort_by, order, title, page, limit).then(
+      (reviewsFromApi) => {
+        setReviews(reviewsFromApi);
+      }
+    );
+  }, [category, sort_by, order, title, page, limit]);
 
   return (
     <div>
       AllReviews
-      <ControlAllReviews />
+      <ControlAllReviews setReviews={setReviews} />
       <ShowAllReviews reviews={reviews} />
     </div>
   );

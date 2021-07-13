@@ -3,23 +3,35 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AllReviews from './components/AllReviews/AllReviews';
 import SingleReview from './components/SingleReview/SingleReview';
+import { useState } from 'react';
+import { UserContext } from './context/User';
 
 function App() {
+  const [comments, setComments] = useState([]);
+  const [user, setUser] = useState({
+    username: 'tickle122',
+    avatar_url:
+      'https://www.spiritsurfers.net/monastery/wp-content/uploads/_41500270_mrtickle.jpg"',
+    name: 'Tom Tickle',
+  });
+
   return (
     <Router>
-      <div className='App'></div>
-      <Navbar />
-      <Switch>
-        <Route exact path='/reviews'>
-          <AllReviews />
-        </Route>
-        <Route exact path='/reviews/:review_id'>
-          <SingleReview />
-        </Route>
-        <Route>
-          <p>404 - not found</p>
-        </Route>
-      </Switch>
+      <UserContext.Provider value={{ user, setUser }}>
+        <div className='App'></div>
+        <Navbar />
+        <Switch>
+          <Route exact path={['/reviews', '/reviews/:category']}>
+            <AllReviews comments={comments} setComments={setComments} />
+          </Route>
+          <Route exact path='/review/:review_id'>
+            <SingleReview comments={comments} setComments={setComments} />
+          </Route>
+          <Route>
+            <p>404 - not found</p>
+          </Route>
+        </Switch>
+      </UserContext.Provider>
     </Router>
   );
 }

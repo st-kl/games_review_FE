@@ -5,7 +5,7 @@ import Comments from './Comments/Comments';
 import { getReviewById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 
-const SingleReview = () => {
+const SingleReview = ({ comments, setComments }) => {
   const [review, setReview] = useState([]);
   const { review_id } = useParams();
 
@@ -14,13 +14,17 @@ const SingleReview = () => {
     getReviewById(review_id).then((reviewFromApi) => {
       setReview(reviewFromApi);
     });
-  }, []);
+  }, [review_id]);
 
   return (
     <div>
       <ControlSingleReview />
       <ShowSingleReview review={review} />
-      <Comments />
+      <Comments
+        comments={comments}
+        setComments={setComments}
+        review_id={review_id}
+      />
     </div>
   );
 };
