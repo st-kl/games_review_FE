@@ -14,7 +14,10 @@ const Navbar = () => {
   return (
     <div>
       <Header>
-        <NavLogo src='https://leeds.tech/wp-content/uploads/2017/04/logo-northcoders-1024x227.png'></NavLogo>
+        <Link to='/'>
+          <NavLogo src='https://leeds.tech/wp-content/uploads/2017/04/logo-northcoders-1024x227.png'></NavLogo>
+        </Link>
+        ;
       </Header>
     </div>
   );

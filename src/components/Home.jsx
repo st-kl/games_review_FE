@@ -11,6 +11,7 @@ const HomeImageWrapper = styled.div`
   background-image: url('https://images.unsplash.com/photo-1561892699-a132d015e9c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1189&q=80');
   background-size: cover;
   height: 80vh;
+  background-position: left bottom;
 `;
 
 const HomeContentWrapper = styled.div`
@@ -26,7 +27,7 @@ const HomeH1 = styled.h1`
 `;
 const HomeText = styled.p`
   margin-bottom: 70px;
-  width: 50%;
+  width: 60%;
 `;
 const HomeLink = styled(Link)`
   background-color: white;
@@ -42,8 +43,8 @@ const Home = () => {
       <HomeContentWrapper>
         <HomeH1>NC Games Reviews</HomeH1>
         <HomeText>
-          You should implement the following functionality in your website.
-          Check the lecture calendar to see when any new topics will be covered.
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+          commodo ligula eget dolor.
         </HomeText>
         <HomeLink to='/reviews'>Browse Reviews</HomeLink>
       </HomeContentWrapper>

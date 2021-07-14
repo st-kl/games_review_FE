@@ -1,6 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { getCategories } from '../../utils/api';
 import { Link, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
+const ControlAllReviewsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  text-align: center;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  grid-column-gap: 40px;
+  padding-left: 10%;
+  padding-right: 10%;
+  /* background-color: #dadada; */
+`;
+
+const Select = styled.select`
+  background-color: none;
+  border-top: 1px solid #d4d3d3;
+  border-right: none;
+  border-bottom: 1px solid #d4d3d3;
+  border-left: none;
+  padding: 3px;
+  color: #696969;
+`;
+const Option = styled.option`
+  border: none;
+`;
+const Label = styled.label`
+  margin-bottom: 10px;
+`;
 
 const ControlAllReviews = ({
   setSortBy,
@@ -28,123 +59,127 @@ const ControlAllReviews = ({
   }, []);
 
   return (
-    <div>
-      ControlAllReviews
-      <select>
-        <option
+    <ControlAllReviewsWrapper>
+      <Label htmlFor='selectCategory'>Category</Label>
+      <Label htmlFor='selectSortBy'>Sort By</Label>
+      <Label htmlFor='selectOrder'>Order</Label>
+      <Label htmlFor='selectLimit'>Limit</Label>
+      <Label htmlFor='selectPages'>Page</Label>
+      <Select name='selectCategory'>
+        <Option
           key='allCategoriesOption'
           onClick={() => {
             history.push(`/reviews`);
           }}
         >
           All
-        </option>
+        </Option>
         {categories.map((category) => {
           return (
-            <option
+            <Option
               key={`${category.slug}Option`}
               onClick={() => {
                 history.push(`/reviews/${category.slug}`);
               }}
             >
               {category.slug}
-            </option>
+            </Option>
           );
         })}
-      </select>
-      <select>
-        <option
+      </Select>
+      <Select name='selectSortBy'>
+        <Option
           key='sortByCommentsOption'
           onClick={() => {
             setSortBy('votes');
           }}
         >
           # Comments
-        </option>
-        <option
+        </Option>
+        <Option
           key='sortByCreatedAtOption'
           onClick={() => {
             setSortBy('created_at');
           }}
         >
           Created At
-        </option>
-        <option
+        </Option>
+        <Option
           key='sortByReviewIdOption'
           onClick={() => {
             setSortBy('review_id');
           }}
         >
           Review ID
-        </option>
-      </select>
-      <select>
-        <option
+        </Option>
+      </Select>
+      <Select name='selectOrder'>
+        <Option
           key='orderAscOption'
           onClick={() => {
             setOrder('asc');
           }}
         >
           Ascending
-        </option>
-        <option
+        </Option>
+        <Option
           key='orderDesOption'
           onClick={() => {
             setOrder('desc');
           }}
         >
           Descending
-        </option>
-      </select>
-      <select>
-        <option
+        </Option>
+      </Select>
+      <Select name='selectLimit'>
+        <Option
           key='limitAllOption'
           onClick={() => {
             setLimit(numOfRevs);
           }}
         >
           All
-        </option>
-        <option
+        </Option>
+        <Option
           key='limit5Option'
           onClick={() => {
             setLimit(5);
           }}
         >
           5
-        </option>
-        <option
+        </Option>
+        <Option
           key='limit10Option'
           onClick={() => {
             setLimit(10);
           }}
         >
           10
-        </option>
-        <option
+        </Option>
+        <Option
           key='limit20Option'
           onClick={() => {
             setLimit(20);
           }}
         >
           20
-        </option>
-      </select>
-      <select>
+        </Option>
+      </Select>
+      <Select name='selectPages'>
         {pages.map((page) => {
           return (
-            <option
+            <Option
               key={`page${page}option`}
               onClick={() => {
                 setPage(page);
               }}
             >
               {page}
-            </option>
+            </Option>
           );
         })}
-      </select>
-    </div>
+      </Select>
+    </ControlAllReviewsWrapper>
   );
 };
 

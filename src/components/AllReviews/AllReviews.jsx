@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { getReviews } from '../../utils/api';
 import ControlAllReviews from './ControlAllReviews';
 import ShowAllReviews from './ShowAllReviews';
+import styled from 'styled-components';
+
+const AllReviewsWrapper = styled.div``;
 
 const AllReviews = ({ comments }) => {
   const [reviews, setReviews] = useState([]);
@@ -30,27 +33,24 @@ const AllReviews = ({ comments }) => {
       });
   }, [category, sortBy, order, page, limit]);
 
-  if (hasError) {
-    return <p>This path does not exist.</p>;
-  } else if (isLoading) {
-    return <p>Loading...</p>;
-  } else {
-    return (
-      <div>
-        AllReviews
-        <ControlAllReviews
-          setSortBy={setSortBy}
-          setOrder={setOrder}
-          setPage={setPage}
-          setLimit={setLimit}
-          reviews={reviews}
-          limit={limit}
-          numOfRevs={numOfRevs}
-        />
-        <ShowAllReviews reviews={reviews} />
-      </div>
-    );
-  }
+  return (
+    <AllReviewsWrapper>
+      <ControlAllReviews
+        setSortBy={setSortBy}
+        setOrder={setOrder}
+        setPage={setPage}
+        setLimit={setLimit}
+        reviews={reviews}
+        limit={limit}
+        numOfRevs={numOfRevs}
+      />
+      <ShowAllReviews
+        reviews={reviews}
+        isLoading={isLoading}
+        hasError={hasError}
+      />
+    </AllReviewsWrapper>
+  );
 };
 
 export default AllReviews;
