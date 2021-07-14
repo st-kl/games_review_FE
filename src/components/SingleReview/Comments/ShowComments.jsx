@@ -4,10 +4,12 @@ import { getCommentsByReview } from '../../../utils/api';
 const ShowComments = ({ comments, setComments, review_id }) => {
   // query comments for each review
   useEffect(() => {
-    getCommentsByReview(review_id).then((commentsFromApi) => {
-      setComments(commentsFromApi);
-    });
-  }, []);
+    getCommentsByReview(review_id)
+      .then((commentsFromApi) => {
+        setComments(commentsFromApi);
+      })
+      .catch((err) => {});
+  }, [comments]);
 
   return (
     <div>

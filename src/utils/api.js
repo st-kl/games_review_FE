@@ -5,25 +5,17 @@ const gamesApi = axios.create({
 });
 
 // reviews
-export const getReviews = async (
-  category,
-  sort_by,
-  order,
-  title,
-  page,
-  limit
-) => {
+export const getReviews = async (category, sort_by, order, page, limit) => {
   const { data } = await gamesApi.get('/reviews', {
     params: {
       category,
       sort_by,
       order,
-      title,
       page,
       limit,
     },
   });
-  return data.reviews;
+  return data;
 };
 
 export const getReviewById = async (reviewId) => {

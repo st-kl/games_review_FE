@@ -6,24 +6,51 @@ import ShowAllReviews from './ShowAllReviews';
 
 const AllReviews = ({ comments }) => {
   const [reviews, setReviews] = useState([]);
-  const { category, sort_by, order, title, page, limit } = useParams();
+  const { category } = useParams();
+  const [sortBy, setSortBy] = useState();
+  const [order, setOrder] = useState('desc');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [numOfRevs, setNumOfRevs] = useState();
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // query reviews
   useEffect(() => {
-    getReviews(category, sort_by, order, title, page, limit).then(
-      (reviewsFromApi) => {
-        setReviews(reviewsFromApi);
-      }
-    );
-  }, [category, sort_by, order, title, page, limit]);
+    setHasError(false);
+    setIsLoading(true);
+    getReviews(category, sortBy, order, page, limit)
+      .then((reviewsFromApi) => {
+        setReviews(reviewsFromApi.reviews);
+        setNumOfRevs(reviewsFromApi.total_count);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setHasError(true);
+      });
+  }, [category, sortBy, order, page, limit]);
 
-  return (
-    <div>
-      AllReviews
-      <ControlAllReviews setReviews={setReviews} />
-      <ShowAllReviews reviews={reviews} />
-    </div>
-  );
+  if (hasError) {
+    return <p>This path does not exist.</p>;
+  } else if (isLoading) {
+    return <p>Loading...</p>;
+  } else {
+    return (
+      <div>
+        AllReviews
+        <ControlAllReviews
+          setSortBy={setSortBy}
+          setOrder={setOrder}
+          setPage={setPage}
+          setLimit={setLimit}
+          reviews={reviews}
+          limit={limit}
+          numOfRevs={numOfRevs}
+        />
+        <ShowAllReviews reviews={reviews} />
+      </div>
+    );
+  }
 };
 
 export default AllReviews;

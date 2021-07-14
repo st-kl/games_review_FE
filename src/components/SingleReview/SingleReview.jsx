@@ -5,28 +5,43 @@ import Comments from './Comments/Comments';
 import { getReviewById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 
-const SingleReview = ({ comments, setComments }) => {
+const SingleReview = ({ comments, setComments, numOfRevs }) => {
   const [review, setReview] = useState([]);
   const { review_id } = useParams();
-
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
   // query review
   useEffect(() => {
-    getReviewById(review_id).then((reviewFromApi) => {
-      setReview(reviewFromApi);
-    });
+    setHasError(false);
+    setIsLoading(true);
+    getReviewById(review_id)
+      .then((reviewFromApi) => {
+        setReview(reviewFromApi);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setHasError(true);
+      });
   }, [review_id]);
 
-  return (
-    <div>
-      <ControlSingleReview />
-      <ShowSingleReview review={review} />
-      <Comments
-        comments={comments}
-        setComments={setComments}
-        review_id={review_id}
-      />
-    </div>
-  );
+  if (hasError) {
+    return <p>This review ID does not exist.</p>;
+  } else if (isLoading) {
+    return <p>Loading...</p>;
+  } else {
+    return (
+      <div>
+        <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
+        <ShowSingleReview review={review} />
+        <Comments
+          comments={comments}
+          setComments={setComments}
+          review_id={review_id}
+        />
+      </div>
+    );
+  }
 };
 
 export default SingleReview;

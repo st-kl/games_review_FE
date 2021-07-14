@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ShowAllReviews = ({ reviews }) => {
+const ShowAllReviews = ({ reviews}) => {
   return (
     <div>
       <ul>
@@ -9,7 +9,7 @@ const ShowAllReviews = ({ reviews }) => {
           return (
             <li key={review.review_id}>
               <Link to={`/review/${review.review_id}`}>
-                {review.title}
+                {review.title} {review.review_id}
               </Link>
             </li>
           );

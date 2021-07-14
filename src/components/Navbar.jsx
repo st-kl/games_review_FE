@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Nav = styled.nav`
+  background: green;
+`;
 
 const Navbar = () => {
   return (
     <div>
-      <nav>
+      <Nav>
         <Link to='/reviews'>Reviews</Link>
-      </nav>
+      </Nav>
     </div>
   );
 };
 
 export default Navbar;
-
-
-
