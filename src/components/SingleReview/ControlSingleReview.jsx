@@ -9,10 +9,17 @@ const ControlSingleReview = ({ review_id }) => {
       ControlSingleReviews
       <button
         onClick={() => {
-          history.push(`/review/${review_id}`);
+          history.push(`/review/${review_id > 1 ? review_id - 1 : review_id}`);
         }}
       >
         previous
+      </button>
+      <button
+        onClick={() => {
+          history.push(`/review/${parseInt(review_id) + 1}`);
+        }}
+      >
+        next
       </button>
     </div>
   );

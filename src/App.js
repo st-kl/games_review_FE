@@ -5,6 +5,13 @@ import AllReviews from './components/AllReviews/AllReviews';
 import SingleReview from './components/SingleReview/SingleReview';
 import { useState } from 'react';
 import { UserContext } from './context/User';
+import styled from 'styled-components';
+import Home from './components/Home';
+
+const AppWrapper = styled.div`
+  width: 90%;
+  margin: 30px auto;
+`;
 
 function App() {
   const [comments, setComments] = useState([]);
@@ -18,19 +25,23 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{ user, setUser }}>
-        <div className='App'></div>
-        <Navbar />
-        <Switch>
-          <Route exact path={['/reviews', '/reviews/:category']}>
-            <AllReviews comments={comments} setComments={setComments} />
-          </Route>
-          <Route exact path='/review/:review_id'>
-            <SingleReview comments={comments} setComments={setComments} />
-          </Route>
-          <Route>
-            <p>404 - not found</p>
-          </Route>
-        </Switch>
+        <AppWrapper>
+          <Navbar />
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route exact path={['/reviews', '/reviews/:category']}>
+              <AllReviews comments={comments} setComments={setComments} />
+            </Route>
+            <Route exact path='/review/:review_id'>
+              <SingleReview comments={comments} setComments={setComments} />
+            </Route>
+            <Route>
+              <p>404 - not found</p>
+            </Route>
+          </Switch>
+        </AppWrapper>
       </UserContext.Provider>
     </Router>
   );

@@ -2,16 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Nav = styled.nav`
-  background: green;
+const Header = styled.header`
+  margin-bottom: 20px;
+`;
+
+const NavLogo = styled.img`
+  height: 50px;
 `;
 
 const Navbar = () => {
   return (
     <div>
-      <Nav>
-        <Link to='/reviews'>Reviews</Link>
-      </Nav>
+      <Header>
+        <NavLogo src='https://leeds.tech/wp-content/uploads/2017/04/logo-northcoders-1024x227.png'></NavLogo>
+      </Header>
     </div>
   );
 };
