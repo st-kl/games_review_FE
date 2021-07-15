@@ -14,7 +14,6 @@ const ControlAllReviewsWrapper = styled.div`
   grid-column-gap: 40px;
   padding-left: 10%;
   padding-right: 10%;
-  /* background-color: #dadada; */
 `;
 
 const Select = styled.select`
@@ -63,7 +62,7 @@ const ControlAllReviews = ({
       <Label htmlFor='selectCategory'>Category</Label>
       <Label htmlFor='selectSortBy'>Sort By</Label>
       <Label htmlFor='selectOrder'>Order</Label>
-      <Label htmlFor='selectLimit'>Limit</Label>
+      <Label htmlFor='selectLimit'>Items per Page</Label>
       <Label htmlFor='selectPages'>Page</Label>
       <Select name='selectCategory'>
         <Option
@@ -89,12 +88,18 @@ const ControlAllReviews = ({
       </Select>
       <Select name='selectSortBy'>
         <Option
+          key='sortByNothingsOption'
+          onClick={() => {
+            setSortBy();
+          }}
+        ></Option>
+        <Option
           key='sortByCommentsOption'
           onClick={() => {
             setSortBy('votes');
           }}
         >
-          # Comments
+          Votes
         </Option>
         <Option
           key='sortByCreatedAtOption'
@@ -115,14 +120,6 @@ const ControlAllReviews = ({
       </Select>
       <Select name='selectOrder'>
         <Option
-          key='orderAscOption'
-          onClick={() => {
-            setOrder('asc');
-          }}
-        >
-          Ascending
-        </Option>
-        <Option
           key='orderDesOption'
           onClick={() => {
             setOrder('desc');
@@ -130,8 +127,22 @@ const ControlAllReviews = ({
         >
           Descending
         </Option>
+        <Option
+          key='orderAscOption'
+          onClick={() => {
+            setOrder('asc');
+          }}
+        >
+          Ascending
+        </Option>
       </Select>
       <Select name='selectLimit'>
+        <Option
+          key='limitAllOption'
+          onClick={() => {
+            setLimit(10);
+          }}
+        ></Option>
         <Option
           key='limitAllOption'
           onClick={() => {

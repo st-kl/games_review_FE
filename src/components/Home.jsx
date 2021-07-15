@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <HomeImageWrapper>
       <HomeContentWrapper>
-        <HomeH1>NC Games Reviews</HomeH1>
+        <HomeH1>NC Game Reviews</HomeH1>
         <HomeText>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
           commodo ligula eget dolor.
