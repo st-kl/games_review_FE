@@ -107,7 +107,7 @@ const ControlAllReviews = ({
             setSortBy('created_at');
           }}
         >
-          Created At
+          Date
         </Option>
         <Option
           key='sortByReviewIdOption'
@@ -138,7 +138,7 @@ const ControlAllReviews = ({
       </Select>
       <Select name='selectLimit'>
         <Option
-          key='limitAllOption'
+          key='limitDefaultOption'
           onClick={() => {
             setLimit(10);
           }}

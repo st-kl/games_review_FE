@@ -10,7 +10,7 @@ const SingleReview = ({ comments, setComments, numOfRevs }) => {
   const { review_id } = useParams();
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // query review
   useEffect(() => {
     setHasError(false);
@@ -25,23 +25,21 @@ const SingleReview = ({ comments, setComments, numOfRevs }) => {
       });
   }, [review_id]);
 
-  if (hasError) {
-    return <p>This review ID does not exist.</p>;
-  } else if (isLoading) {
-    return <p>Loading...</p>;
-  } else {
-    return (
-      <div>
-        <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
-        <ShowSingleReview review={review} />
-        <Comments
-          comments={comments}
-          setComments={setComments}
-          review_id={review_id}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
+      <ShowSingleReview
+        review={review}
+        hasError={hasError}
+        isLoading={isLoading}
+      />
+      <Comments
+        comments={comments}
+        setComments={setComments}
+        review_id={review_id}
+      />
+    </div>
+  );
 };
 
 export default SingleReview;

@@ -12,7 +12,6 @@ const ShowAllReviewsWrapper = styled.div`
 `;
 
 const ReviewWrapper = styled.div`
-  position: relative;
   margin: 10px;
   text-align: center;
   padding: 20px;
