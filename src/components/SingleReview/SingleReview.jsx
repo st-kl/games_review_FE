@@ -4,6 +4,7 @@ import ShowSingleReview from './ShowSingleReview';
 import Comments from './Comments/Comments';
 import { getReviewById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 const SingleReview = ({ comments, setComments, numOfRevs }) => {
   const [review, setReview] = useState([]);
@@ -25,21 +26,39 @@ const SingleReview = ({ comments, setComments, numOfRevs }) => {
       });
   }, [review_id]);
 
-  return (
-    <div>
-      <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
-      <ShowSingleReview
-        review={review}
-        hasError={hasError}
-        isLoading={isLoading}
-      />
-      <Comments
-        comments={comments}
-        setComments={setComments}
-        review_id={review_id}
-      />
-    </div>
-  );
+  const SingleReviewWrapper = styled.div``;
+
+  if (hasError) {
+    return (
+      <SingleReviewWrapper>
+        <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
+      </SingleReviewWrapper>
+      // <p>This review ID does not exist.</p>
+    );
+  } else if (isLoading) {
+    return (
+      <SingleReviewWrapper>
+        <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
+      </SingleReviewWrapper>
+      //  <p>Loading...</p>;
+    );
+  } else {
+    return (
+      <SingleReviewWrapper>
+        <ControlSingleReview review_id={review_id} numOfRevs={numOfRevs} />
+        <ShowSingleReview
+          review={review}
+          hasError={hasError}
+          isLoading={isLoading}
+        />
+        <Comments
+          comments={comments}
+          setComments={setComments}
+          review_id={review_id}
+        />
+      </SingleReviewWrapper>
+    );
+  }
 };
 
 export default SingleReview;

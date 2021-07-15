@@ -11,26 +11,20 @@ const ShowSingleReview = ({ review, hasError, isLoading }) => {
     });
   };
 
-  if (hasError) {
-    return <p>This review ID does not exist.</p>;
-  } else if (isLoading) {
-    return <p>Loading...</p>;
-  } else {
-    return (
-      <div>
-        {review.title} Votes: {review.votes + voteChange}
-        <button
-          disabled={voteChange > 0}
-          key={`incVoteButton${review.review_id}`}
-          onClick={() => {
-            incVotes(review.review_id);
-          }}
-        >
-          Like
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      {review.title} Votes: {review.votes + voteChange}
+      <button
+        disabled={voteChange > 0}
+        key={`incVoteButton${review.review_id}`}
+        onClick={() => {
+          incVotes(review.review_id);
+        }}
+      >
+        Like
+      </button>
+    </div>
+  );
 };
 
 export default ShowSingleReview;

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,61 +7,74 @@ import styled from 'styled-components';
 const ShowAllReviewsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 10px;
-  padding: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  overflow: scroll;
 `;
 
 const ReviewWrapper = styled.div`
-  margin: 10px;
-  text-align: center;
-  padding: 20px;
-  border-radius: 3px;
-  width: 330px;
+  background-color: #ece8e8;
+  margin: 15px;
+  width: 275px;
+  transition: transform 0.3s;
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.1);
   }
 `;
 
-const ReviewTitle = styled.div`
+const ReviewTitle = styled(Link)`
+  color: black;
   font-size: 1.2rem;
-  width: 80%;
-  margin: auto;
   text-decoration: none;
+`;
+
+const ReviewInfoWrapper = styled.div`
+  margin: 10px;
 `;
 
 const ReviewImage = styled.img`
   width: 100%;
   height: 200px;
-  border-radius: 2px;
   object-fit: cover;
 `;
 
 const ReviewCategory = styled.div`
-  &:before {
-    content: '🏷️ ';
+  &:last-child {
+    margin-left: auto;
   }
+  border: grey 1px solid;
+  border-radius: 20px;
+  padding: 0 5px;
 `;
 const ReviewDate = styled.div`
-  &:before {
-    content: '📅 ';
-  }
+  margin: 5px 0 40px;
 `;
-const ReviewAuthor = styled.div`
-  &:before {
-    content: '👤 ';
-  }
-`;
+
 const ReviewVotes = styled.div`
-  font-weight: bold;
-  padding-right: 3px;
+  padding-right: 10px;
+  &:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f004';
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+  }
 `;
 const ReviewComments = styled.div`
-  font-weight: bold;
   padding-right: 3px;
+  &:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f075';
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+  }
 `;
-const VotesAndCommentsWrapper = styled.div`
+const VotesCommentsCategoryWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  border-top: grey 1px solid;
+  padding-top: 10px;
 `;
 const ReviewText = styled.div`
   margin-right: 20px;
@@ -82,18 +95,17 @@ const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
                 src={review.review_img_url}
                 alt={review.title}
               ></ReviewImage>
-              <ReviewTitle>
-                <Link to={`/review/${review.review_id}`}>{review.title}</Link>
-              </ReviewTitle>
-              <ReviewCategory>{review.category}</ReviewCategory>
-              <ReviewDate>{review.created_at.slice(0, 10)}</ReviewDate>
-              <ReviewAuthor>{review.owner}</ReviewAuthor>
-              <VotesAndCommentsWrapper>
-                <ReviewVotes>{review.votes}</ReviewVotes>
-                <ReviewText>Upvotes</ReviewText>
-                <ReviewComments>{review.comment_count}</ReviewComments>
-                <ReviewText>Comments</ReviewText>
-              </VotesAndCommentsWrapper>
+              <ReviewInfoWrapper>
+                <ReviewTitle to={`/review/${review.review_id}`}>
+                  {review.title}
+                </ReviewTitle>
+                <ReviewDate>{review.created_at.slice(0, 10)}</ReviewDate>
+                <VotesCommentsCategoryWrapper>
+                  <ReviewVotes>{review.votes}</ReviewVotes>
+                  <ReviewComments>{review.comment_count}</ReviewComments>
+                  <ReviewCategory>{review.category}</ReviewCategory>
+                </VotesCommentsCategoryWrapper>
+              </ReviewInfoWrapper>
             </ReviewWrapper>
           );
         })}
