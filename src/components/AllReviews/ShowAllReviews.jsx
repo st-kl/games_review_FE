@@ -30,7 +30,9 @@ const ReviewTitle = styled(Link)`
 `;
 
 const ReviewInfoWrapper = styled.div`
+  position: relative;
   margin: 0 15px 10px;
+  height: 150px;
 `;
 
 const ReviewImage = styled.img`
@@ -59,12 +61,12 @@ const ReviewComments = styled.div`
   padding: 0 10px 0 3px;
 `;
 const VotesCommentsCategoryWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
   display: flex;
   border-top: grey 1px solid;
   padding-top: 10px;
-`;
-const ReviewText = styled.div`
-  margin-right: 20px;
+  width: 100%;
 `;
 
 const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
