@@ -1,13 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FaComment } from 'react-icons/fa';
+import { AiFillLike } from 'react-icons/ai';
 
 const ShowAllReviewsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 20px;
   overflow: scroll;
 `;
@@ -30,7 +30,7 @@ const ReviewTitle = styled(Link)`
 `;
 
 const ReviewInfoWrapper = styled.div`
-  margin: 10px;
+  margin: 0 15px 10px;
 `;
 
 const ReviewImage = styled.img`
@@ -52,24 +52,11 @@ const ReviewDate = styled.div`
 `;
 
 const ReviewVotes = styled.div`
-  padding-right: 10px;
-  &:before {
-    font-family: 'Font Awesome 5 Free';
-    content: '\f004';
-    padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-  }
+  padding: 0 10px 0 3px;
 `;
+
 const ReviewComments = styled.div`
-  padding-right: 3px;
-  &:before {
-    font-family: 'Font Awesome 5 Free';
-    content: '\f075';
-    padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-  }
+  padding: 0 10px 0 3px;
 `;
 const VotesCommentsCategoryWrapper = styled.div`
   display: flex;
@@ -101,7 +88,9 @@ const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
                 </ReviewTitle>
                 <ReviewDate>{review.created_at.slice(0, 10)}</ReviewDate>
                 <VotesCommentsCategoryWrapper>
+                  <AiFillLike />
                   <ReviewVotes>{review.votes}</ReviewVotes>
+                  <FaComment />
                   <ReviewComments>{review.comment_count}</ReviewComments>
                   <ReviewCategory>{review.category}</ReviewCategory>
                 </VotesCommentsCategoryWrapper>

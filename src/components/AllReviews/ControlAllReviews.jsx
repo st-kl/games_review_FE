@@ -6,14 +6,13 @@ import styled from 'styled-components';
 const ControlAllReviewsWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  text-align: center;
+  /* text-align: center; */
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   padding-top: 20px;
   padding-bottom: 20px;
   grid-column-gap: 40px;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 10px;
 `;
 
 const Select = styled.select`
