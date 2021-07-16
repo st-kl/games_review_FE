@@ -31,7 +31,9 @@ export const patchReviewById = async (reviewId) => {
 
 // comments
 export const getCommentsByReview = async (reviewId) => {
-  const { data } = await gamesApi.get(`/reviews/${reviewId}/comments`);
+  const { data } = await gamesApi.get(
+    `/reviews/${reviewId}/comments?limit=1000`
+  );
   return data.comments;
 };
 

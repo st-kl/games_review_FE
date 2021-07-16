@@ -33,6 +33,8 @@ const AllReviews = ({ comments }) => {
       });
   }, [category, sortBy, order, page, limit]);
 
+  console.log(category, sortBy, order, page, limit);
+
   return (
     <AllReviewsWrapper>
       <ControlAllReviews
@@ -43,6 +45,7 @@ const AllReviews = ({ comments }) => {
         reviews={reviews}
         limit={limit}
         numOfRevs={numOfRevs}
+        setNumOfRevs={setNumOfRevs}
       />
       <ShowAllReviews
         reviews={reviews}

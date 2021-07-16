@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const HomeImage = styled.img`
-  object-fit: cover;
-`;
-
 const HomeImageWrapper = styled.div`
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1561892699-a132d015e9c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1189&q=80');
@@ -43,8 +39,8 @@ const Home = () => {
       <HomeContentWrapper>
         <HomeH1>NC Game Reviews</HomeH1>
         <HomeText>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor.
+          Reviews of the hottest board games out there, put through their paces
+          by experts to help you decide what to play next. Check it out!
         </HomeText>
         <HomeLink to='/reviews'>Browse Reviews</HomeLink>
       </HomeContentWrapper>

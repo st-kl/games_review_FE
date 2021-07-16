@@ -9,10 +9,14 @@ const CommentSection = styled.div`
 `;
 const CommentWrapper = styled.div`
   margin: 15px 0 15px 0;
+  border: 1px solid #acacac;
+  padding: 10px;
+  border-radius: 5px;
 `;
 const CommentAuthor = styled.div`
   font-weight: bold;
   margin-right: 10px;
+  margin-bottom: 10px;
 `;
 const CommentDate = styled.div`
   color: #6b6b6b;
@@ -30,7 +34,7 @@ const ShowComments = ({ comments, setComments, review_id }) => {
         setComments(commentsFromApi);
       })
       .catch((err) => {});
-  }, []);
+  });
 
   return (
     <CommentSection>
@@ -41,7 +45,7 @@ const ShowComments = ({ comments, setComments, review_id }) => {
             <CommentWrapper key={comment.comment_id}>
               <AuthorAndDateWrapper>
                 <CommentAuthor>{comment.author}</CommentAuthor>
-                <CommentDate>{comment.created_at.slice(0, 10)}</CommentDate>
+                <CommentDate>• {comment.created_at.slice(0, 10)}</CommentDate>
               </AuthorAndDateWrapper>
               <CommentBody>{comment.body}</CommentBody>
             </CommentWrapper>

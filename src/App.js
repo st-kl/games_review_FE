@@ -26,6 +26,7 @@ function App() {
     <Router>
       <UserContext.Provider value={{ user, setUser }}>
         <AppWrapper>
+          <Navbar />
           <Switch>
             <Route exact path='/'>
               <Home />

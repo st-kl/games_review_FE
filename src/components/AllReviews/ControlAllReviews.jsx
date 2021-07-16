@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const ControlAllReviewsWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  /* text-align: center; */
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   padding-top: 20px;
@@ -56,6 +55,12 @@ const ControlAllReviews = ({
       setCategories(categoriesFromApi);
     });
   }, []);
+
+  useEffect(() => {
+    if (numOfRevs < limit) {
+      setPage(1);
+    }
+  });
 
   return (
     <ControlAllReviewsWrapper>
@@ -146,7 +151,7 @@ const ControlAllReviews = ({
         <Option
           key='limitAllOption'
           onClick={() => {
-            setLimit(numOfRevs);
+            setLimit(1000);
           }}
         >
           All

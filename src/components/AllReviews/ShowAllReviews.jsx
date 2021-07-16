@@ -3,18 +3,22 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaComment } from 'react-icons/fa';
 import { AiFillLike } from 'react-icons/ai';
+import dateFormat from 'dateformat';
 
 const ShowAllReviewsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
   overflow: scroll;
+  height: 75vh;
+  scrollbar-width: none;
 `;
 
 const ReviewWrapper = styled.div`
   background-color: #ece8e8;
   margin: 15px;
   width: 275px;
+  height: 365px;
   transition: transform 0.3s;
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -25,7 +29,7 @@ const ReviewWrapper = styled.div`
 const ReviewTitle = styled(Link)`
   color: black;
   font-size: 1.2rem;
-  text-decoration: none;
+  /* text-decoration: none; */
 `;
 
 const ReviewInfoWrapper = styled.div`
@@ -66,6 +70,7 @@ const VotesCommentsCategoryWrapper = styled.div`
   border-top: grey 1px solid;
   padding-top: 10px;
   width: 100%;
+  align-items: center;
 `;
 
 const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
@@ -87,7 +92,9 @@ const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
                 <ReviewTitle to={`/review/${review.review_id}`}>
                   {review.title}
                 </ReviewTitle>
-                <ReviewDate>{review.created_at.slice(0, 10)}</ReviewDate>
+                <ReviewDate>
+                  {dateFormat(review.created_at, 'mmmm d, yyyy')}
+                </ReviewDate>
                 <VotesCommentsCategoryWrapper>
                   <AiFillLike />
                   <ReviewVotes>{review.votes}</ReviewVotes>
