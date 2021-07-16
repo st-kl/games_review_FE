@@ -30,7 +30,7 @@ const ShowComments = ({ comments, setComments, review_id }) => {
         setComments(commentsFromApi);
       })
       .catch((err) => {});
-  }, [comments]);
+  }, []);
 
   return (
     <CommentSection>

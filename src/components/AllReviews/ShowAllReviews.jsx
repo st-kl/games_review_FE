@@ -7,7 +7,6 @@ import { AiFillLike } from 'react-icons/ai';
 const ShowAllReviewsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
   margin-top: 20px;
   overflow: scroll;
 `;

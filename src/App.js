@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AllReviews from './components/AllReviews/AllReviews';
 import SingleReview from './components/SingleReview/SingleReview';
@@ -26,7 +26,6 @@ function App() {
     <Router>
       <UserContext.Provider value={{ user, setUser }}>
         <AppWrapper>
-          <Navbar />
           <Switch>
             <Route exact path='/'>
               <Home />

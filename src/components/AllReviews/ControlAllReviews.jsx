@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCategories } from '../../utils/api';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ControlAllReviewsWrapper = styled.div`
@@ -13,6 +13,7 @@ const ControlAllReviewsWrapper = styled.div`
   padding-bottom: 20px;
   grid-column-gap: 40px;
   padding-left: 10px;
+  background-color: white;
 `;
 
 const Select = styled.select`

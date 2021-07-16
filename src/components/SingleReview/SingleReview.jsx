@@ -6,6 +6,8 @@ import { getReviewById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+const SingleReviewWrapper = styled.div``;
+
 const SingleReview = ({ comments, setComments, numOfRevs }) => {
   const [review, setReview] = useState([]);
   const { review_id } = useParams();
@@ -25,8 +27,6 @@ const SingleReview = ({ comments, setComments, numOfRevs }) => {
         setHasError(true);
       });
   }, [review_id]);
-
-  const SingleReviewWrapper = styled.div``;
 
   if (hasError) {
     return (
