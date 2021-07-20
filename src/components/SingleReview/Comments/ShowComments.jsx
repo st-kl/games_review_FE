@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { getCommentsByReview } from '../../../utils/api';
 
 import styled from 'styled-components';
+import dateFormat from 'dateformat';
 
 const CommentSection = styled.div`
   height: 40vh;
   overflow: scroll;
 `;
 const CommentWrapper = styled.div`
-  margin: 15px 0 15px 0;
+  margin: 15px 10px 15px 0;
   border: 1px solid #acacac;
   padding: 10px;
   border-radius: 5px;
@@ -45,7 +46,9 @@ const ShowComments = ({ comments, setComments, review_id }) => {
             <CommentWrapper key={comment.comment_id}>
               <AuthorAndDateWrapper>
                 <CommentAuthor>{comment.author}</CommentAuthor>
-                <CommentDate>• {comment.created_at.slice(0, 10)}</CommentDate>
+                <CommentDate>
+                  • {dateFormat(comment.created_at, 'mmmm d, yyyy')}
+                </CommentDate>
               </AuthorAndDateWrapper>
               <CommentBody>{comment.body}</CommentBody>
             </CommentWrapper>

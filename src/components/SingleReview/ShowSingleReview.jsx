@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaComment } from 'react-icons/fa';
 import { AiFillLike } from 'react-icons/ai';
+import { ImArrowUp, ImArrowDown } from 'react-icons/im';
+
 import dateFormat from 'dateformat';
 
 const ShowAllReviewsWrapper = styled.div`
@@ -44,7 +46,9 @@ const ReviewImage = styled.img`
   object-fit: cover;
 `;
 
-const ReviewCategory = styled.div`
+const ReviewCategory = styled(Link)`
+  text-decoration: none;
+  color: black;
   &:last-child {
     margin-left: auto;
   }
@@ -73,9 +77,9 @@ const VotesCommentsCategoryWrapper = styled.div`
   align-items: center;
 `;
 
-const LikeButton = styled.button`
-  margin-left: 15px;
-  padding: 5px 30px;
+const VoteButton = styled.button`
+  margin-left: 10px;
+  padding: 5px 10px;
 `;
 
 const Author = styled.div`
@@ -87,12 +91,12 @@ const Designer = styled.div`
   font-size: 1rem;
 `;
 
-const ShowSingleReview = ({ review, hasError, isLoading }) => {
+const ShowSingleReview = ({ review, commentChange }) => {
   const [voteChange, setVoteChange] = useState(0);
 
-  const incVotes = (reviewId) => {
-    setVoteChange((currVoteChange) => currVoteChange + 1);
-    patchReviewById(reviewId).catch((err) => {
+  const changeVotes = (reviewId, vote) => {
+    setVoteChange((currVoteChange) => currVoteChange + vote);
+    patchReviewById(reviewId, vote).catch((err) => {
       setVoteChange(0);
     });
   };
@@ -119,19 +123,32 @@ const ShowSingleReview = ({ review, hasError, isLoading }) => {
               <AiFillLike />
               <ReviewVotes>{review.votes + voteChange}</ReviewVotes>
               <FaComment />
-              <ReviewComments>{review.comment_count}</ReviewComments>
-              <ReviewCategory>{review.category}</ReviewCategory>
+              <ReviewComments>
+                {review.comment_count + commentChange}
+              </ReviewComments>
+              <ReviewCategory to={`/reviews/${review.category}`}>
+                {review.category}
+              </ReviewCategory>
             </VotesCommentsCategoryWrapper>
           </ReviewInfoWrapper>
-          <LikeButton
+          <VoteButton
             disabled={voteChange > 0}
             key={`incVoteButton${review.review_id}`}
             onClick={() => {
-              incVotes(review.review_id);
+              changeVotes(review.review_id, 1);
             }}
           >
-            Like
-          </LikeButton>
+            <ImArrowUp />
+          </VoteButton>
+          <VoteButton
+            disabled={voteChange < 0}
+            key={`decVoteButton${review.review_id}`}
+            onClick={() => {
+              changeVotes(review.review_id, -1);
+            }}
+          >
+            <ImArrowDown />
+          </VoteButton>
         </ReviewWrapper>
       </ShowAllReviewsWrapper>
     </div>

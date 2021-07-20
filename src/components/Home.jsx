@@ -39,8 +39,8 @@ const Home = () => {
       <HomeContentWrapper>
         <HomeH1>NC Game Reviews</HomeH1>
         <HomeText>
-          Reviews of the hottest board games out there, put through their paces
-          by experts to help you decide what to play next. Check it out!
+          Reviews of the most exciting board games out there, put through their
+          paces by experts to help you decide what to play next. Check it out!
         </HomeText>
         <HomeLink to='/reviews'>Browse Reviews</HomeLink>
       </HomeContentWrapper>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../../context/User';
-import { postComment } from '../../../utils/api';
+import { getCommentsByReview, postComment } from '../../../utils/api';
 import styled from 'styled-components';
 
 const NewCommentWrapper = styled.div`
@@ -20,12 +20,19 @@ const PostCommentButton = styled.button`
 `;
 const NewCommentForm = styled.form``;
 
-const AddComment = ({ review_id }) => {
+const AddComment = ({ review_id, setCommentChange }) => {
   const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState({
     username: user.username,
     body: '',
   });
+
+  const updateNumOfComments = (reviewId) => {
+    setCommentChange((currNumOfComments) => currNumOfComments + 1);
+    getCommentsByReview(reviewId).catch((err) => {
+      setCommentChange(0);
+    });
+  };
 
   return (
     <NewCommentWrapper>
@@ -39,6 +46,7 @@ const AddComment = ({ review_id }) => {
             newComment.body = '';
             return newComment;
           });
+          updateNumOfComments(review_id);
         }}
       >
         <CommentInput

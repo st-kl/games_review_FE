@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AllReviews from './components/AllReviews/AllReviews';
 import SingleReview from './components/SingleReview/SingleReview';
@@ -38,7 +38,9 @@ function App() {
               <SingleReview comments={comments} setComments={setComments} />
             </Route>
             <Route>
-              <p>404 - not found</p>
+              <p>
+                404 - not found: Back to <Link to='/'>HOME</Link>
+              </p>
             </Route>
           </Switch>
         </AppWrapper>

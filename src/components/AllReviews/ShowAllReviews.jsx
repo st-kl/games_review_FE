@@ -44,13 +44,15 @@ const ReviewImage = styled.img`
   object-fit: cover;
 `;
 
-const ReviewCategory = styled.div`
+const ReviewCategory = styled(Link)`
   &:last-child {
     margin-left: auto;
   }
   border: grey 1px solid;
   border-radius: 20px;
   padding: 0 5px;
+  text-decoration: none;
+  color: black;
 `;
 const ReviewDate = styled.div`
   margin: 5px 0 40px;
@@ -77,7 +79,7 @@ const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
   if (hasError) {
     return <p>This path does not exist.</p>;
   } else if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Loading Reviews...</p>;
   } else {
     return (
       <ShowAllReviewsWrapper>
@@ -100,7 +102,9 @@ const ShowAllReviews = ({ reviews, isLoading, hasError }) => {
                   <ReviewVotes>{review.votes}</ReviewVotes>
                   <FaComment />
                   <ReviewComments>{review.comment_count}</ReviewComments>
-                  <ReviewCategory>{review.category}</ReviewCategory>
+                  <ReviewCategory to={`/reviews/${review.category}`}>
+                    {review.category}
+                  </ReviewCategory>
                 </VotesCommentsCategoryWrapper>
               </ReviewInfoWrapper>
             </ReviewWrapper>

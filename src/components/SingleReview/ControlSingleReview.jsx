@@ -25,6 +25,10 @@ const ControlReviewButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  &:disabled {
+    color: #d3cdcd;
+    border: solid #d3cdcd 1px;
+  }
 `;
 
 const ControlSingleReview = ({ review_id }) => {
@@ -33,6 +37,7 @@ const ControlSingleReview = ({ review_id }) => {
   return (
     <ControlSingleReviewWrapper>
       <ControlReviewButton
+        disabled={!(review_id - 1)}
         onClick={() => {
           history.push(`/review/${review_id > 1 ? review_id - 1 : review_id}`);
         }}
