@@ -24,7 +24,7 @@ export const getReviewById = async (reviewId) => {
 };
 
 export const patchReviewById = async (reviewId, vote) => {
-  const { data } = await gamesApi.patch(`/reviews/${reviewId}`, {
+  await gamesApi.patch(`/reviews/${reviewId}`, {
     inc_votes: vote,
   });
 };
