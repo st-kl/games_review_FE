@@ -16,11 +16,17 @@ https://be-nc-games-sk.herokuapp.com/api. \
 - **Styled Components:** The `styled components` library is used to created each html element
 - **Components:** Each part of the website (e.g. filter section) is abstracted as individual component
 
+### Extension Ideas
+
+- user login and account page
+- delete/edit comment
+- create new review
+
 ### Major Used Packages
 
-- Web Application: `express`
-- Database Interaction: `node-postgres`
-- Testing: `jest`
+- Frontend library: `React`
+- Frontend styling: `styled components`
+- HTTP requests: `axios`
 
 ---
 
