@@ -9,12 +9,6 @@ import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 import dateFormat from 'dateformat';
 
 const ShowAllReviewsWrapper = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  overflow: scroll;
-  height: 75vh;
-  scrollbar-width: none; */
   width: 60%;
   margin: auto;
   justify-content: center;
