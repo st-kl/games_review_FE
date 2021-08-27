@@ -6,7 +6,7 @@ A website giving an overview of games reviews, allowing the user to add comments
 This is the matching frontend application for the "Games Review API", from where the data is fetched.
 
 A productive version is hosted on Netlify:\
-https://be-nc-games-sk.herokuapp.com/api. \
+https://games-reviews-sk.netlify.app/. \
 
 ### Highlights
 
